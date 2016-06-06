@@ -1,0 +1,19 @@
+{
+  "name": "khan-infection",
+  "version": "1.0.0",
+  "description": "KHAAAAAAN",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --harmony test/spec.js"
+  },
+  "keywords": ["BFS", "Knapsack", "Subset sum"],
+  "author": "Luke Albao <lukealbao@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
