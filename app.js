@@ -197,14 +197,15 @@ API.prototype.totalInfection = function (user, version) {
 };
 
 API.prototype.limitedInfection = function (nUsers, version) {
-  var nCliques = Math.floor(nUsers / avgCliqueSize(this.model));
-  var tableSize = Object.keys(this.model.Cliques.collection).length;
+  var nCliques = Math.floor(nUsers / avgCliqueSize(this.model));  
+  var cliques = this.model.Cliques.select();
+  var tableSize = cliques.length;
   var clique;
   var root;
 
   for (var i = 0, id; i < nCliques; i++) {
-    id = Math.floor(Math.random() * tableSize);
-    clique = this.model.Cliques.select({id: clique});
+    id = Math.floor(Math.random() * cliques.length);
+    clique = cliques[id];
     root = clique.root;
 
     this.model.Users.update({clique: root}, {version: version});
