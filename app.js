@@ -68,7 +68,7 @@ function hasPath (from, to) {
 
   if (from.id === to) return (path = true);
 
-  while ((user = queue.shift())) {
+  while (path === false && (user = queue.shift())) {
     if (discovered.indexOf(user.id) !== -1) continue;
     discovered.push(user.id);
 
