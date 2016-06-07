@@ -61,8 +61,6 @@ function userBfs (seed, onDiscover, onEdge, onFinish) {
 
 // hasPath (UserInstance, Number) -> Boolean
 function hasPath (from, to) {
-  debug('hasPath(%s -> %d) ? on %j', from.name, to,
-        from.getEdges().map(function (friend) { return friend.id}));
   var path = false;
   var queue = [from];
   var discovered = [];
@@ -93,17 +91,9 @@ function hasPath (from, to) {
 
 // avgCliqueSize :: (Model) -> Number
 function avgCliqueSize (model) {
+  var cliques = model.Cliques.select();  
+  var totalCliques = cliques.length;
   var totalUsers = Object.keys(model.Users.collection).length;
-  var totalCliques = Object.keys(model.Cliques.collection)
-                     .map(function (id) {
-                       return model.Cliques.selectOne({id: id});
-                     })
-                     .map(function (clique) {
-                       return clique.count;
-                     })
-                     .reduce(function (a, b) {
-                       return a + b
-                     }, 0);
 
   return totalUsers / totalCliques;  
 }
