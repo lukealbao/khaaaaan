@@ -4,22 +4,21 @@ as well as minimizing memory usage when processing huge numbers of
 users, by addressing the data model: we track connected components of
 the user graph as edges are created and removed. Assuming an even
 distribution of components sizes, we rely on the law of large numbers
-to quickly pull a random number of components to infect.
+to enable targeting a number of users with a random sampling of components.
 
 As a result, the interesting stuff is in the edge creation and
 deletion. If you want to see bredth-first search implementation, you
 can see the `userBfs` or `hasPath` private functions. Most everything else
-is going to be the result of me getting a little carried away trying
-to write something that could be used like an ORM in order to mimic a
-little bit of structure.
+is going to be the result of me getting a little carried mimicing ORM
+behavior. 
 
-The functional tests of edge operations can be run with `npm
+The **functional tests** of edge operations can be run with `npm
 test`. You will need to also run `npm install` to install mocha and
 chai first. 
 
-I wrote tests (and a mini statistical framework) to run
-simulations for the `limitedInfection` procedure. You can run that by
-running `npm run limited`. (It will take ~15 seconds to run, most of
+I wrote tests (and a mini statistical framework) to **run
+simulations** for the `limitedInfection` procedure. You can run that by
+running `npm run limited`. (It will take ~20 seconds to run, most of
 which is spent generating random data.) You will see that the two
 tests there perform poorly. My hunch is that there's a problem with
 the data generation process; upon inspection, I found that the
@@ -27,7 +26,9 @@ clique sizes are not normally distributed, which is the fundamental
 assumption behind the design. In real life, even a highly skewed
 distribution may be managable (given it is big enough) with some
 simple modifications to the procedure for calculating the number of
-cliques to infect.
+cliques to infect.**Update 523056b:** yes, we were generating a very
+connected graph. When drastically reduced edge-to-node ratio, `npm run
+limited` performs as expected.
 
 
 # Model
