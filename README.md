@@ -19,14 +19,14 @@ chai first.
 I wrote tests (and a mini statistical framework) to **run
 simulations** for the `limitedInfection` procedure. You can run that by
 running `npm run limited`. (It will take ~20 seconds to run, most of
-which is spent generating random data.) You will see that the two
+which is spent generating random data.) ~~You will see that the two
 tests there perform poorly. My hunch is that there's a problem with
 the data generation process; upon inspection, I found that the
 clique sizes are not normally distributed, which is the fundamental
 assumption behind the design. In real life, even a highly skewed
 distribution may be managable (given it is big enough) with some
 simple modifications to the procedure for calculating the number of
-cliques to infect.**Update 523056b:** yes, we were generating a very
+cliques to infect.~~**Update 523056b:** yes, we were generating a very
 connected graph. When drastically reduced edge-to-node ratio, `npm run
 limited` performs as expected.
 
